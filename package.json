@@ -1,124 +1,67 @@
 {
-	"name": "@ptkdev/node-cli-boilerplate",
-	"displayName": "Node Command Line Interface Boilerplate",
-	"description": "Create a Node CLI with this user-friendly boilerplate. Use this repository as a template for your new npm command line interface project.",
-	"version": "3.1.0-nightly.0",
-	"main": "dist/cli/cli.js",
-	"type": "module",
-	"bin": {
-		"node-cli-boilerplate": "dist/cli/cli.js",
-		"@ptkdev/node-cli-boilerplate": "dist/cli/cli.js"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
-	"license": "MIT",
-	"license-docs": "CC BY 4.0",
-	"license-translations": "CC BY 4.0",
-	"license-images": "CC BY-NC 4.0",
-	"homepage": "https://github.com/ptkdev-boilerplate/node-cli-boilerplate",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ptkdev-boilerplate/node-cli-boilerplate.git"
-	},
-	"bugs": {
-		"url": "https://github.com/ptkdev-boilerplate/node-cli-boilerplate/issues"
-	},
-	"engines": {
-		"node": ">=20"
-	},
-	"scripts": {
-		"setup": "tsx scripts/setup.ts && tsx scripts/changelog.ts && npm run pre-commit && npm install",
-		"start": "npm run release && node --no-warnings dist/cli/cli.js",
-		"link": "npm link",
-		"unlink": "npm unlink @ptkdev/node-cli-boilerplate",
-		"dev": "DEBUG=true npm run git-hash && tsx scripts/configs.ts && tsx scripts/rmdist.ts && nodemon --exec 'tsx app/cli/cli.ts'",
-		"build": "tsx scripts/configs.ts && tsx scripts/rmdist.ts && tsc && tsx scripts/assets.ts && tsx scripts/esm_imports.ts",
-		"release": "DEBUG=false npm run git-hash && npm run build && tsc --declaration --emitDeclarationOnly",
-		"test": "jest app",
-		"docs": "git submodule update --recursive && markserv ./README.md",
-		"lint": "npm run lint-prettify && eslint . --cache --ext .ts,.js",
-		"lint-fix": "npm run lint-prettify && eslint . --cache --ext .ts,.js --fix",
-		"lint-prettify": "prettier --write --ignore-unknown '**/*.{ts,md,json}' .all-contributorsrc .all-shieldsrc",
-		"git-set-upstream": "git remote add upstream git@github.com:ptkdev-boilerplate/node-cli-boilerplate.git && git fetch upstream",
-		"git-pull-upstream": "git pull upstream main && git pull upstream beta && git pull upstream nightly",
-		"git-pull": "git pull --recursive",
-		"git-hash": "tsx scripts/githash.ts",
-		"git-ignore-reset": "git rm -r --cached . && git add . && git commit -m \"[Fix] Removing all files in .gitignore\"",
-		"github-workflow-next-version": "tsx scripts/version.ts",
-		"github-workflow-changelog": "tsx scripts/changelog_release.ts",
-		"npm-publish-main": "git checkout main && npm publish",
-		"npm-publish-beta": "git checkout beta && npm publish --tag beta",
-		"npm-publish-nightly": "git checkout nightly && npm publish --tag nightly",
-		"fetch-shields": "tsx scripts/dotfiles.ts",
-		"contributors-generate": "npm run fetch-shields && all-contributors generate",
-		"all-shields-generate": "all-shields-generate",
-		"pre-commit": "tsx scripts/copyright.ts && npm run contributors-generate && npm run all-shields-generate && npm run lint-fix && npm run test",
-		"pkg-clean": "rm -rf node_modules package-lock.json && npm install",
-		"pkg-update": "npm update",
-		"pkg-upgrade": "npx --yes npm-check-updates -u ",
-		"pkg-upgrade-manually": "npx npm-check-updates --interactive",
-		"prepare": "ts-patch install -s"
-	},
-	"dependencies": {
-		"@ptkdev/logger": "^1.8.0"
-	},
-	"devDependencies": {
-		"@ptkdev/all-shields-cli": "^2.0.2",
-		"@types/jest": "^30.0.0",
-		"@types/node": "^25.3.0",
-		"@types/shelljs": "^0.10.0",
-		"@types/yargs": "^16.0.11",
-		"@typescript-eslint/eslint-plugin": "^7.18.0",
-		"@typescript-eslint/parser": "^7.18.0",
-		"all-contributors-cli": "^6.26.1",
-		"dotenv": "^17.3.1",
-		"eslint": "^8.57.0",
-		"eslint-plugin-jest": "^28.11.0",
-		"eslint-plugin-jsdoc": "^48.11.0",
-		"husky": "^9.1.7",
-		"jest": "^30.2.0",
-		"json": "^11.0.0",
-		"markserv": "^1.17.4",
-		"node-fetch": "^3.3.2",
-		"nodemon": "^2.0.22",
-		"pm2": "^6.0.14",
-		"prettier": "^3.8.1",
-		"replace-in-file": "^7.2.0",
-		"shelljs": "^0.10.0",
-		"ts-jest": "^29.4.6",
-		"ts-patch": "^3.3.0",
-		"tsx": "^4.21.0",
-		"typescript": "^5.9.3",
-		"typescript-transform-paths": "^3.5.6",
-		"yargs": "^16.2.0"
-	},
-	"keywords": [
-		"ptkdev",
-		"npm-library",
-		"make-npm-library",
-		"create-npm-library",
-		"npm-module-sample",
-		"npx-example",
-		"npx-cli",
-		"node",
-		"node-module",
-		"node-library",
-		"node-cli",
-		"node-cli-bolerplate",
-		"node-line-interface",
-		"node-cmd",
-		"npx",
-		"node-command-line",
-		"npm-library",
-		"npm-cli",
-		"npm-cli-bolerplate",
-		"npm-line-interface",
-		"npm-command-line",
-		"command-line-tool",
-		"boilerplate",
-		"github-template"
-	],
-	"contributors": []
+  "name": "node-cli-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for building Node.js CLI applications with TypeScript",
+  "main": "dist/index.js",
+  "bin": {
+    "node-cli-boilerplate": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "clean": "rimraf dist",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "cli",
+    "boilerplate",
+    "typescript",
+    "node"
+  ],
+  "author": "ptkdev",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "ora": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.ts",
+      "**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ]
+  }
 }
