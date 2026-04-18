@@ -18,7 +18,8 @@ export const registerHelloCommand = (program: Command): void => {
 		.option("-r, --repeat <times>", "Number of times to repeat the greeting", "1")
 		.option("-e, --exclamation <mark>", "Punctuation mark to end greeting with", "!")
 		.action((name: string, options: { uppercase: boolean; repeat: string; exclamation: string }) => {
-			const times = Math.max(1, parseInt(options.repeat, 10) || 1);
+			// Cap repeats at 10 to avoid accidental flooding of the terminal
+			const times = Math.min(10, Math.max(1, parseInt(options.repeat, 10) || 1));
 			let greeting = `Hello, ${name}${options.exclamation}`;
 
 			if (options.uppercase) {
