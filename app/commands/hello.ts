@@ -16,9 +16,10 @@ export const registerHelloCommand = (program: Command): void => {
 		.argument("[name]", "Name of the person to greet", "World")
 		.option("-u, --uppercase", "Print greeting in uppercase", false)
 		.option("-r, --repeat <times>", "Number of times to repeat the greeting", "1")
-		.action((name: string, options: { uppercase: boolean; repeat: string }) => {
+		.option("-e, --exclamation <mark>", "Punctuation mark to end greeting with", "!")
+		.action((name: string, options: { uppercase: boolean; repeat: string; exclamation: string }) => {
 			const times = Math.max(1, parseInt(options.repeat, 10) || 1);
-			let greeting = `Hello, ${name}!`;
+			let greeting = `Hello, ${name}${options.exclamation}`;
 
 			if (options.uppercase) {
 				greeting = greeting.toUpperCase();
