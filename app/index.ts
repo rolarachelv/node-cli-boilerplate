@@ -60,6 +60,8 @@ async function run(options: { debug: boolean; config: string }): Promise<void> {
 	if (options.debug) {
 		console.debug("[DEBUG] Debug mode enabled");
 		console.debug("[DEBUG] Config path:", options.config);
+		console.debug("[DEBUG] Node version:", process.version);
+		console.debug("[DEBUG] Platform:", process.platform);
 	}
 
 	console.log(`Starting ${packageJson.name} v${packageJson.version}...`);
