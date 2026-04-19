@@ -15,7 +15,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
- * Reads the package.json to extract version and descriptionn */
+ * Reads the package.json to extract version and description
+ */
 const packageJson = JSON.parse(
 	readFileSync(resolve(__dirname, "../package.json"), "utf-8")
 );
@@ -37,7 +38,8 @@ function createProgram(): Command {
 		.command("run")
 		.description("Run the main application logic")
 		.option("-d, --debug", "Enable debug output", false)
-		.option("-c, --config <path>", "Path to a custom config file", ".env")
+		// Changed default config path to match my personal project structure
+		.option("-c, --config <path>", "Path to a custom config file", "config/.env")
 		.action(async (options: { debug: boolean; config: string }) => {
 			try {
 				await run(options);
